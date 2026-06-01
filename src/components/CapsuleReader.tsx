@@ -17,10 +17,12 @@ export function CapsuleReader({ capsule, isLoading, onClose }: CapsuleReaderProp
       <div className="reader-drawer" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
         <header className="reader-header">
-          <span className="reader-meta-top">CAPSULE READER</span>
-          <button onClick={onClose} className="reader-close-btn" title="Close Reader">
-            Close ✕
-          </button>
+          <div className="reader-header-inner">
+            <span className="reader-meta-top">CAPSULE READER</span>
+            <button onClick={onClose} className="reader-close-btn" title="Close Reader">
+              Close ✕
+            </button>
+          </div>
         </header>
 
         {/* Content Area */}

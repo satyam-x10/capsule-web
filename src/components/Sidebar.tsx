@@ -23,7 +23,7 @@ export function Sidebar({
     const [yearStr, monthStr, dayStr] = selectedDate.split('-');
     const date = new Date(parseInt(yearStr, 10), parseInt(monthStr, 10) - 1, parseInt(dayStr, 10));
     date.setDate(date.getDate() + offset);
-    
+
     const y = date.getFullYear();
     const m = String(date.getMonth() + 1).padStart(2, '0');
     const d = String(date.getDate()).padStart(2, '0');
@@ -98,37 +98,6 @@ export function Sidebar({
         </div>
       </aside>
 
-      {/* Floating Bottom Nav Bar for Mobile Viewports */}
-      <div className="mobile-nav-bar">
-        <button
-          onClick={() => setActiveTab('home')}
-          className={`mobile-nav-btn ${activeTab === 'home' ? 'active' : ''}`}
-        >
-          <Home size={20} />
-          <span>Home</span>
-        </button>
-        <button
-          onClick={() => setActiveTab('capsules')}
-          className={`mobile-nav-btn ${activeTab === 'capsules' ? 'active' : ''}`}
-        >
-          <BookOpen size={20} />
-          <span>Capsules</span>
-        </button>
-        <button
-          onClick={() => setActiveTab('convo')}
-          className={`mobile-nav-btn ${activeTab === 'convo' ? 'active' : ''}`}
-        >
-          <MessageSquare size={20} />
-          <span>Convo</span>
-        </button>
-        <button
-          onClick={onOpenCalendar}
-          className="mobile-nav-btn"
-        >
-          <Calendar size={20} />
-          <span>Dates</span>
-        </button>
-      </div>
     </>
   );
 }

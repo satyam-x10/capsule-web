@@ -33,7 +33,7 @@ export function ConvoArena({ convo, isLoading }: ConvoArenaProps) {
       const meanings = [...vocab]
         .map((v, idx) => ({ ...v, originalIndex: idx }))
         .sort(() => Math.random() - 0.5);
-      
+
       setShuffledWords(words);
       setShuffledMeanings(meanings);
       setVocabAnswers({});
@@ -137,11 +137,7 @@ export function ConvoArena({ convo, isLoading }: ConvoArenaProps) {
 
   return (
     <div className="content-wrapper" style={{ animation: 'fadeIn 0.3s ease-out' }}>
-      {/* Overview Header */}
-      <div className="convo-header-card">
-        <span className="convo-theme">{theme}</span>
-        <h2 className="convo-title">{title}</h2>
-      </div>
+
 
       {/* Tabs */}
       <div className="convo-sub-tabs">
@@ -302,12 +298,7 @@ export function ConvoArena({ convo, isLoading }: ConvoArenaProps) {
       {/* vocabulary section */}
       {activeSubTab === 'vocabulary' && (
         <div>
-          <div className="vocab-instructions">
-            <span className="section-label">VOCABULARY CHALLENGE</span>
-            <span style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-              Match each word in the Word Bank to its definition. Click a word, then click its matching definition card slot.
-            </span>
-          </div>
+
 
           {/* Word Bank */}
           <div className="vocab-word-bank">
@@ -342,7 +333,7 @@ export function ConvoArena({ convo, isLoading }: ConvoArenaProps) {
               const matchedWord = vocabAnswers[idx];
               const isCorrect = !!matchedWord;
               const isFlashError = incorrectMatchIdx === idx;
-              
+
               let slotClass = '';
               if (isCorrect) slotClass = 'correct';
               else if (isFlashError) slotClass = 'incorrect';
@@ -359,11 +350,9 @@ export function ConvoArena({ convo, isLoading }: ConvoArenaProps) {
                     {isCorrect ? (
                       <span>✓ {matchedWord}</span>
                     ) : isFlashError ? (
-                      <span>✗ Incorrect</span>
-                    ) : selectedWord ? (
-                      <span>Place "{selectedWord}"</span>
+                      <span>✗</span>
                     ) : (
-                      <span>Tap to match</span>
+                      <span>+</span>
                     )}
                   </button>
                 </div>
