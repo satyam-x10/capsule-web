@@ -924,6 +924,66 @@ body {
   justify-content: flex-end;
 }
 
+.vocab-highlight-tooltip {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 4px;
+  cursor: help;
+  position: relative;
+  display: inline;
+}
+
+/* Tooltip bubble */
+.vocab-highlight-tooltip::after {
+  content: attr(data-meaning);
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  width: max-content;
+  max-width: 220px;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.4;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 100;
+  text-align: center;
+}
+
+/* Tooltip arrow */
+.vocab-highlight-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--border-color) transparent transparent transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 100;
+}
+
+.vocab-highlight-tooltip:hover::after,
+.vocab-highlight-tooltip:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .dialogue-bubble {
   max-width: 70%;
   background-color: var(--bg-secondary);

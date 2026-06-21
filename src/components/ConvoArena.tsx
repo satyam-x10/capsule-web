@@ -135,6 +135,26 @@ export function ConvoArena({ convo, isLoading }: ConvoArenaProps) {
   const correctVocabCount = Object.keys(vocabAnswers).length;
   const isVocabFinished = vocabulary && correctVocabCount === vocabulary.length;
 
+  const renderDialogueText = (text: string) => {
+    if (!vocabulary || vocabulary.length === 0) return text;
+
+    const escapedWords = vocabulary.map(v => v.word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
+    const regex = new RegExp(`(\\b(?:${escapedWords.join('|')})\\b)`, 'gi');
+    const parts = text.split(regex);
+
+    return parts.map((part, index) => {
+      const vocabItem = vocabulary.find(v => v.word.toLowerCase() === part.toLowerCase());
+      if (vocabItem) {
+        return (
+          <span key={index} className="vocab-highlight-tooltip" data-meaning={vocabItem.meaning}>
+            {part}
+          </span>
+        );
+      }
+      return part;
+    });
+  };
+
   return (
     <div className="content-wrapper" style={{ animation: 'fadeIn 0.3s ease-out' }}>
 
@@ -284,7 +304,7 @@ export function ConvoArena({ convo, isLoading }: ConvoArenaProps) {
                         title="Click to type this line"
                       >
                         <span className="bubble-speaker">{utterance.speaker}</span>
-                        <p className="bubble-text">{utterance.text}</p>
+                        <div className="bubble-text">{renderDialogueText(utterance.text)}</div>
                       </div>
                     </div>
                   );
